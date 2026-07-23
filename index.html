@@ -528,7 +528,7 @@
             </div>
             <form onsubmit="checkPassword(event)" class="space-y-3">
                 <div>
-                    <input type="password" id="sheetPasswordInput" placeholder="Input Password Ganteng" required
+                    <input type="password" id="sheetPasswordInput" placeholder="Input Password Gantengku" required
                         class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-center text-lg outline-none tracking-widest">
                     <p id="passwordError" class="text-red-500 text-[11px] text-center mt-2 hidden">Password salah! Silakan coba lagi.</p>
                 </div>
@@ -1073,7 +1073,74 @@
                 }
             }
             
-          
+            // Seed sample realistic school data if completely empty
+            if (!reportsData || reportsData.length === 0) {
+                const today = new Date();
+                const m = String(today.getMonth() + 1).padStart(2, '0');
+                const y = today.getFullYear();
+                
+                reportsData = [
+                    {
+                        id: '1',
+                        rawDate: `${y}-${m}-02`,
+                        dateFormatted: `02/${m}/${y}`,
+                        monthKey: `${m}-${y}`,
+                        pihak: 'Guru',
+                        nama: 'Pak Bambang (Kurikulum)',
+                        keperluan: 'Modul Ajar Bahasa Indonesia Kelas 7 & 8',
+                        jenisLayanan: 'Mesin Fotocopy',
+                        detail: 'Standard',
+                        jumlah: 150,
+                        hargaSatuan: 300,
+                        totalHarga: 45000
+                    },
+                    {
+                        id: '2',
+                        rawDate: `${y}-${m}-05`,
+                        dateFormatted: `05/${m}/${y}`,
+                        monthKey: `${m}-${y}`,
+                        pihak: 'Guru',
+                        nama: 'Bu Siti (Kesiswaan)',
+                        keperluan: 'Undangan Rapat Orang Tua Siswa Baru',
+                        jenisLayanan: 'Print Epson',
+                        detail: 'Epson Hitam',
+                        jumlah: 40,
+                        hargaSatuan: 500,
+                        totalHarga: 20000
+                    },
+                    {
+                        id: '3',
+                        rawDate: `${y}-${m}-10`,
+                        dateFormatted: `10/${m}/${y}`,
+                        monthKey: `${m}-${y}`,
+                        pihak: 'Siswa',
+                        nama: 'Ahmad & Tim OSIS',
+                        keperluan: 'Sertifikat Pemenang Lomba OSN Sekolah',
+                        jenisLayanan: 'Print Epson',
+                        detail: 'Epson Warna',
+                        jumlah: 25,
+                        hargaSatuan: 1000,
+                        totalHarga: 25000
+                    },
+                    {
+                        id: '4',
+                        rawDate: `${y}-${m}-12`,
+                        dateFormatted: `12/${m}/${y}`,
+                        monthKey: `${m}-${y}`,
+                        pihak: 'Siswa',
+                        nama: 'Rina (Ketua Kelompok 3)',
+                        keperluan: 'Jilid Mika Laporan P5 Projek Siswa',
+                        jenisLayanan: 'Jilid Mika Softcover',
+                        detail: 'Custom / Non-cetak',
+                        jumlah: 5,
+                        hargaSatuan: 5000,
+                        totalHarga: 25000
+                    }
+                ];
+                saveReportsData();
+            }
+        }
+
         // Export active month data to CSV
         function exportToCSV() {
             const filteredItems = reportsData.filter(item => item.monthKey === activeMonthKey);
